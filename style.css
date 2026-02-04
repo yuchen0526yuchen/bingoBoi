@@ -77,21 +77,29 @@ h1 { color: var(--text); letter-spacing: 1px; margin-top: 0; }
 }
 
 .delete-btn { 
+    /* 顏色與基本設定 */
     background: #D8B4B4; 
     color: white; 
     border: none; 
-    border-radius: 50%; /* 變成正圓形 */
-    width: 24px;         /* 固定寬度 */
-    height: 24px;        /* 固定高度 */
-    display: flex;       /* 讓 X 置中 */
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
     cursor: pointer;
     transition: all 0.2s;
+    
+    /* 核心：鎖定圓形外觀 */
+    width: 28px;                /* 設定固定寬度 */
+    height: 28px;               /* 設定固定高度 */
+    aspect-ratio: 1 / 1;        /* 強制長寬比為 1:1 */
+    border-radius: 50%;         /* 變成正圓 */
+    flex-shrink: 0;             /* ***最重要：防止按鈕被 header 擠壓變寬*** */
+
+    /* 讓 X 居中 */
+    display: inline-flex;       
+    align-items: center;
+    justify-content: center;
     padding: 0;
+    margin: 0;
     line-height: 1;
-    flex-shrink: 0;      /* 防止按鈕被擠壓變形 */
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .delete-btn:active { 
