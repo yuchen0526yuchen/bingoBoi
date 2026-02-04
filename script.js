@@ -8,7 +8,7 @@ function init() {
 
 function initPicker() {
     const grid = document.getElementById('picker-grid');
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 75; i++) {
         const btn = document.createElement('div');
         btn.className = 'num-btn';
         btn.innerText = i;
