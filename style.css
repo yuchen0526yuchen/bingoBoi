@@ -78,7 +78,7 @@ h1 { color: var(--text); letter-spacing: 1px; margin-top: 0; }
 
 .delete-btn { 
     background: #D8B4B4; 
-    color: var(--white); 
+    color: white; 
     border: none; 
     border-radius: 50%; /* 變成正圓形 */
     width: 24px;         /* 固定寬度 */
@@ -89,8 +89,9 @@ h1 { color: var(--text); letter-spacing: 1px; margin-top: 0; }
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s;
-    line-height: 1;      /* 修正 X 的垂直偏移 */
-    padding: 0;          /* 移除原本的內距 */
+    padding: 0;
+    line-height: 1;
+    flex-shrink: 0;      /* 防止按鈕被擠壓變形 */
 }
 
 .delete-btn:active { 
