@@ -28,18 +28,37 @@ function init() {
         cell.className = 'cell';
         cell.innerText = i + 1;
 
-        // 短按：標記
-        cell.onclick = () => {
-            cell.classList.toggle('marked');
-            checkBingo();
-        };
+        let timer;
+        let isLongPress = false;
 
-        // 長按：更換數字 (手機端)
-        cell.oncontextmenu = (e) => {
-            e.preventDefault();
-            editingCell = cell;
-            picker.classList.remove('hidden');
-        };
+        // 觸控開始
+        cell.addEventListener('touchstart', (e) => {
+            isLongPress = false;
+            timer = setTimeout(() => {
+                isLongPress = true;
+                editingCell = cell;
+                picker.classList.remove('hidden');
+            }, 600); // 0.6秒判定為長按
+        }, { passive: true });
+
+        // 觸控結束
+        cell.addEventListener('touchend', (e) => {
+            if (timer) {
+                clearTimeout(timer);
+                // 如果不是長按，才執行「標記」功能
+                if (!isLongPress) {
+                    cell.classList.toggle('marked');
+                    checkBingo();
+                }
+            }
+            // 預防某些瀏覽器在 touchend 後還去觸發 click
+            if (e.cancelable) e.preventDefault(); 
+        });
+
+        // 如果手指滑動了，就取消計時（代表使用者是在捲動網頁）
+        cell.addEventListener('touchmove', () => {
+            clearTimeout(timer);
+        }, { passive: true });
 
         board.appendChild(cell);
         cells.push(cell);
