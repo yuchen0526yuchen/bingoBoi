@@ -1,142 +1,131 @@
 :root {
-    --primary: #D0CEC9;        /* 主色 */
-    --primary-dark: #7F7979;   /* 按鈕點擊 */
-    --marked: #C1BDB3;         /* 標記色 */
-    --text: #323031;           /* 文字顏色 */
-    --bg: #DFDFDF;             /* 背景 */
+    --primary: #D0CEC9;        /* 主色 (淺灰泥) */
+    --primary-dark: #7F7979;   /* 按鈕點擊 (深岩灰) */
+    --marked: #C1BDB3;         /* 標記色 (亞麻灰) */
+    --text: #323031;           /* 文字顏色 (炭黑) */
+    --bg: #DFDFDF;             /* 背景 (銀底) */
+    --white: #FFFFFF;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: -apple-system, system-ui, sans-serif;
     background-color: var(--bg);
-    background-image: linear-gradient(180deg, var(--primary) 0%, var(--bg) 100%);
-    background-attachment: fixed;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: var(--text);
+    margin: 0; padding: 20px; color: var(--text);
 }
 
-.container {
-    width: 90%;
-    max-width: 400px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 25px;
-    border-radius: 30px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+.app-container { max-width: 500px; margin: 0 auto; padding-bottom: 100px; }
+
+header { text-align: center; margin-bottom: 25px; }
+h1 { color: var(--text); letter-spacing: 1px; margin-top: 0; }
+
+/* 號碼呼叫區 */
+.caller-box {
+    display: flex; gap: 8px; background: var(--white);
+    padding: 12px; border-radius: 18px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.caller-box input {
+    flex: 1; border: 2px solid var(--primary); border-radius: 12px;
+    padding: 10px; font-size: 1rem; outline: none; color: var(--text);
+}
+.call-btn { 
+    background: var(--primary-dark); color: var(--white); 
+    border: none; padding: 0 20px; border-radius: 12px; font-weight: bold; 
 }
 
-h1 { color: #5D8A97; letter-spacing: 2px; }
+/* 卡片設計 */
+.cards-stack { display: flex; flex-direction: column; gap: 25px; margin-top: 20px; }
 
-.status { 
-    font-size: 1.1rem; 
-    margin-bottom: 20px; 
-    background: white;
-    padding: 10px;
-    border-radius: 15px;
-    display: inline-block;
+.card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    padding: 18px; border-radius: 22px;
+    border: 1px solid var(--primary);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+}
+
+.card-header {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 12px; 
+    font-size: 0.9rem; 
+    font-weight: bold;
+    border-bottom: 1px solid var(--primary); /* 增加一條細線區隔 */
+    padding-bottom: 8px;
+}
+
+.delete-btn { 
+    background: #D8B4B4; /* 淡灰粉紅，配合大地色系 */
+    color: #FFF; 
+    border: none; 
+    border-radius: 6px; 
+    padding: 4px 12px; 
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.delete-btn:active { 
+    background: #7F7979; /* 點擊時變深 */
 }
 
 .board {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    aspect-ratio: 1/1;
+    display: grid; grid-template-columns: repeat(5, 1fr); 
+    gap: 6px; aspect-ratio: 1/1;
 }
 
 .cell {
-    background: white;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    border: 1px solid rgba(0,0,0,0.05);
-    /* 核心：徹底禁用所有長按選取行為 */
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    
-    /* 針對 iOS Safari 禁用系統選單 */
-    -webkit-touch-callout: none;
-    
-    /* 防止點擊時出現藍色框框 */
-    -webkit-tap-highlight-color: transparent;
-    
-    /* 告訴瀏覽器不要隨便處理這個格子的觸控 */
-    touch-action: manipulation;
+    background: var(--white); border-radius: 8px; 
+    display: flex; align-items: center; justify-content: center; 
+    font-weight: bold; font-size: 1.2rem; cursor: pointer;
+    user-select: none; -webkit-touch-callout: none;
+    border: 1px solid rgba(0,0,0,0.03); transition: 0.2s;
 }
 
-/* 點擊標記後的顏色 */
-.cell.marked {
-    background: var(--marked);
-    color: white;
-    transform: scale(0.95);
+/* 標記狀態 */
+.cell.marked { 
+    background: var(--marked); 
+    color: var(--white); 
     border-color: transparent;
+    transform: scale(0.96);
 }
 
-.controls { display: flex; gap: 12px; margin-top: 25px; }
-
-button {
-    flex: 1; padding: 14px; border: none; border-radius: 15px;
-    font-weight: bold; cursor: pointer; transition: 0.2s;
-    font-size: 1rem;
+/* 底部操作 */
+.bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; 
+    background: var(--white); padding: 15px 20px; 
+    display: flex; gap: 12px; box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+    z-index: 100;
 }
 
-/* 主要按鈕 */
-button:first-child {
-    background: var(--primary);
-    color: #1D1D1C;
+.add-btn { 
+    flex: 2; background: var(--primary); color: var(--text);
+    border: none; border-radius: 14px; font-weight: bold; padding: 14px; 
+}
+.reset-all-btn { 
+    flex: 1; background: var(--bg); color: var(--primary-dark);
+    border: none; border-radius: 14px; font-weight: bold;
 }
 
-button:first-child:active { background: var(--primary-dark); }
-
-/* 次要按鈕 */
-.secondary { 
-    background: #E0E0E0; 
-    color: #666; 
+/* 數字選擇器彈窗 */
+.picker-overlay { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.4); display: flex; justify-content: center; 
+    align-items: center; z-index: 1000; backdrop-filter: blur(3px);
 }
-
-.hint { font-size: 0.85rem; margin-top: 15px; color: #789DA7; line-height: 1.6; }
-
-/* 彈窗樣式 */
-.picker-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.4); display: flex;
-    justify-content: center; align-items: center; z-index: 100;
-    backdrop-filter: blur(4px);
-}
-
 .hidden { display: none !important; }
-
-.picker-content {
-    background: white; width: 85%; max-height: 70vh;
-    border-radius: 25px; padding: 25px; overflow-y: auto;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+.picker-content { 
+    background: var(--white); width: 85%; max-height: 70vh; 
+    border-radius: 20px; padding: 20px; overflow-y: auto; 
 }
-
-.picker-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    gap: 8px; margin-bottom: 20px;
+.picker-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.num-btn { 
+    background: var(--bg); padding: 12px 0; border-radius: 8px; 
+    text-align: center; font-weight: bold; color: var(--text);
 }
-
-.num-btn {
-    background: #F0F4F5; padding: 12px 0;
-    border-radius: 10px; color: var(--text); text-align: center;
-    font-weight: bold;
+.close-btn { 
+    width: 100%; margin-top: 15px; padding: 12px; 
+    background: var(--primary-dark); color: var(--white); 
+    border: none; border-radius: 10px; 
 }
-
-.num-btn:active { background: var(--primary); }
-
-.close-btn { width: 100%; background: #FF8A8A; color: white; }
