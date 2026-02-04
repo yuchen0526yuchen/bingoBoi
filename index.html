@@ -2,21 +2,26 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bingoBoi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>馬上賓狗</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>hehe bingo boi</h1>
-        <div class="status">目前連線數: <span id="line-count">0</span></div>
-        
-        <div id="bingo-board" class="board"></div>
+    <div class="app-container">
+        <header>
+            <h1>馬上賓狗</h1>
+            <div class="caller-box">
+                <input type="number" id="call-input" placeholder="輸入喊到的號碼" min="1" max="100">
+                <button onclick="callNumber()" class="call-btn">呼叫</button>
+            </div>
+        </header>
 
-        <div class="controls">
-            <button onclick="resetBoard()" class="secondary">全部重設</button>
+        <div id="cards-container" class="cards-stack"></div>
+
+        <div class="bottom-bar">
+            <button onclick="addNewCard()" class="add-btn">+ 新增卡片</button>
+            <button onclick="resetAll()" class="reset-all-btn">全部重設</button>
         </div>
-        <p class="hint">💡 點擊：標記格子<br>💡 電腦右鍵、手機長按格子：更換數字</p>
     </div>
 
     <div id="number-picker" class="picker-overlay hidden">
