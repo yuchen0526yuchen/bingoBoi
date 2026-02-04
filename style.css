@@ -1,84 +1,115 @@
 :root {
-    --primary: #6c5ce7;
-    --success: #00b894;
-    --danger: #d63031;
-    --bg: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    --primary: #B4D8E1;        /* 主色：粉藍 */
+    --primary-dark: #8FBAC6;   /* 深粉藍：用於按鈕點擊 */
+    --marked: #FFB5B5;         /* 標記色：輕柔粉紅（與藍色很搭） */
+    --text: #444444;           /* 文字顏色：深灰 */
+    --bg: #F5F9FA;             /* 背景：極淺藍灰 */
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg);
+    background-color: var(--bg);
+    background-image: linear-gradient(180deg, var(--primary) 0%, var(--bg) 100%);
+    background-attachment: fixed;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: white;
+    color: var(--text);
 }
 
 .container {
     width: 90%;
     max-width: 400px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 24px;
+    padding: 25px;
+    border-radius: 30px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
 }
 
-.status { font-size: 1.2rem; margin-bottom: 15px; font-weight: bold; }
+h1 { color: #5D8A97; letter-spacing: 2px; }
+
+.status { 
+    font-size: 1.1rem; 
+    margin-bottom: 20px; 
+    background: white;
+    padding: 10px;
+    border-radius: 15px;
+    display: inline-block;
+}
 
 .board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+    gap: 10px;
     aspect-ratio: 1/1;
 }
 
 .cell {
-    background: rgba(255, 255, 255, 0.2);
+    background: white;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
-    transition: 0.2s;
-    user-select: none; /* 防止手機長按選取文字 */
+    transition: all 0.2s ease;
+    user-select: none;
     -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
+/* 點擊標記後的顏色 */
 .cell.marked {
-    background: #fab1a0;
-    color: #d63031;
-    transform: scale(0.92);
+    background: var(--marked);
+    color: white;
+    transform: scale(0.95);
+    border-color: transparent;
 }
 
-.controls { display: flex; gap: 10px; margin-top: 20px; }
+.controls { display: flex; gap: 12px; margin-top: 25px; }
 
 button {
-    flex: 1; padding: 12px; border: none; border-radius: 12px;
-    font-weight: bold; cursor: pointer;
+    flex: 1; padding: 14px; border: none; border-radius: 15px;
+    font-weight: bold; cursor: pointer; transition: 0.2s;
+    font-size: 1rem;
 }
 
-.secondary { background: rgba(255,255,255,0.2); color: white; }
+/* 主要按鈕 */
+button:first-child {
+    background: var(--primary);
+    color: #4A707A;
+}
 
-.hint { font-size: 0.8rem; margin-top: 15px; opacity: 0.8; line-height: 1.5; }
+button:first-child:active { background: var(--primary-dark); }
+
+/* 次要按鈕 */
+.secondary { 
+    background: #E0E0E0; 
+    color: #666; 
+}
+
+.hint { font-size: 0.85rem; margin-top: 15px; color: #789DA7; line-height: 1.6; }
 
 /* 彈窗樣式 */
 .picker-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85); display: flex;
+    background: rgba(0,0,0,0.4); display: flex;
     justify-content: center; align-items: center; z-index: 100;
+    backdrop-filter: blur(4px);
 }
 
 .hidden { display: none !important; }
 
 .picker-content {
-    background: #2d3436; width: 85%; max-height: 70vh;
-    border-radius: 20px; padding: 20px; overflow-y: auto;
+    background: white; width: 85%; max-height: 70vh;
+    border-radius: 25px; padding: 25px; overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 .picker-grid {
@@ -87,8 +118,11 @@ button {
 }
 
 .num-btn {
-    background: rgba(255,255,255,0.1); padding: 12px 0;
-    border-radius: 8px; color: white; text-align: center;
+    background: #F0F4F5; padding: 12px 0;
+    border-radius: 10px; color: var(--text); text-align: center;
+    font-weight: bold;
 }
 
-.close-btn { width: 100%; background: var(--danger); color: white; }
+.num-btn:active { background: var(--primary); }
+
+.close-btn { width: 100%; background: #FF8A8A; color: white; }
