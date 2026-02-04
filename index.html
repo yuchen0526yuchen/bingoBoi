@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-    <title>bingoBoi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Master</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>hehe bingo boi</h1>
-    <div id="bingo-board" class="board">
+    <div class="container">
+        <h1>BINGO</h1>
+        <div class="status">目前連線數: <span id="line-count">0</span></div>
+        <div id="bingo-board" class="board"></div>
+        <div class="controls">
+            <button onclick="randomize()">隨機洗牌</button>
+            <button onclick="resetBoard()" class="secondary">全部清空</button>
         </div>
-    <button onclick="resetBoard()">重設</button>
-
+        <p class="hint">點擊格子標記 / 直接點擊數字可修改</p>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
