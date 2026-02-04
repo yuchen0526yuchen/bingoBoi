@@ -22,11 +22,12 @@ function addNewCard() {
     const container = document.getElementById('cards-container');
     const cardId = `card-${Date.now()}`; // 產生唯一的 ID
     
+    // 請找到這一段並修改
     const cardHtml = `
         <div class="card" id="${cardId}">
             <div class="card-header">
-                <strong>賓果卡 #${cardCount} | 連線: <span class="line-count">0</span></strong>
-                <button class="delete-btn" onclick="deleteCard('${cardId}')">✕ 移除卡片</button>
+                <strong>卡片 #${cardCount} | 連線: <span class="line-count">0</span></strong>
+                <button class="delete-btn" onclick="deleteCard('${cardId}')">✕</button>
             </div>
             <div class="board"></div>
         </div>
