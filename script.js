@@ -8,7 +8,7 @@ let editingCell = null;
 // 初始化：建立 5x5 格子與 1-100 選擇器
 function init() {
     // 建立 1-100 數字按鈕
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 75; i++) {
         const btn = document.createElement('div');
         btn.className = 'num-btn';
         btn.innerText = i;
