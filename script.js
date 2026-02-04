@@ -47,12 +47,12 @@ function setupCellEvents(cell, cardId, idx) {
     let timer;
     let isLongPress = false;
 
-    cell.addEventListener('touchstart', () => {
+    // --- 📱 手機端：長按邏輯 ---
+    cell.addEventListener('touchstart', (e) => {
         isLongPress = false;
         timer = setTimeout(() => {
             isLongPress = true;
-            editingInfo = { cardId, cellIdx: idx, element: cell };
-            document.getElementById('number-picker').classList.remove('hidden');
+            openPicker(cell, cardId, idx);
         }, 600);
     }, { passive: true });
 
@@ -67,12 +67,28 @@ function setupCellEvents(cell, cardId, idx) {
     });
 
     cell.addEventListener('touchmove', () => clearTimeout(timer));
-    cell.onclick = () => { // 電腦版支援
-        if (!isLongPress) {
+
+    // --- 💻 電腦端：右鍵點擊直接開啟 ---
+    cell.addEventListener('contextmenu', (e) => {
+        e.preventDefault(); // 阻止電腦出現系統預設的右鍵選單
+        openPicker(cell, cardId, idx);
+    });
+
+    // --- 💻 電腦端：左鍵單擊標記 ---
+    cell.addEventListener('click', (e) => {
+        // 只有在不是觸控裝置（或沒有觸發長按）的情況下才執行
+        // 這樣可以避免手機點擊時觸發兩次
+        if (e.pointerType === 'mouse') {
             cell.classList.toggle('marked');
             checkBingo(cardId);
         }
-    };
+    });
+}
+
+// 為了讓程式碼更乾淨，我們把開啟選單抽出來寫
+function openPicker(cell, cardId, idx) {
+    editingInfo = { cardId, cellIdx: idx, element: cell };
+    document.getElementById('number-picker').classList.remove('hidden');
 }
 
 function selectNumber(num) {
