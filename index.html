@@ -3,20 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bingo Master</title>
+    <title>bingoBoi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>BINGO</h1>
+        <h1>hehe bingo boi</h1>
         <div class="status">目前連線數: <span id="line-count">0</span></div>
+        
         <div id="bingo-board" class="board"></div>
+
         <div class="controls">
-            <button onclick="randomize()">隨機洗牌</button>
-            <button onclick="resetBoard()" class="secondary">全部清空</button>
+            <button onclick="resetBoard()" class="secondary">全部重設</button>
         </div>
-        <p class="hint">點擊格子標記 / 直接點擊數字可修改</p>
+        <p class="hint">💡 點擊：標記格子<br>💡 長按格子：更換數字</p>
     </div>
+
+    <div id="number-picker" class="picker-overlay hidden">
+        <div class="picker-content">
+            <h3>選擇數字</h3>
+            <div id="picker-grid" class="picker-grid"></div>
+            <button onclick="closePicker()" class="close-btn">取消</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
