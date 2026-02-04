@@ -1,9 +1,9 @@
 :root {
-    --primary: #D0CEC9;        /* 主色：粉藍 */
-    --primary-dark: #7F7979;   /* 深粉藍：用於按鈕點擊 */
-    --marked: #C1BDB3;         /* 標記色：輕柔粉紅（與藍色很搭） */
-    --text: #323031;           /* 文字顏色：深灰 */
-    --bg: #DFDFDF;             /* 背景：極淺藍灰 */
+    --primary: #D0CEC9;        /* 主色 */
+    --primary-dark: #7F7979;   /* 按鈕點擊 */
+    --marked: #C1BDB3;         /* 標記色 */
+    --text: #323031;           /* 文字顏色 */
+    --bg: #DFDFDF;             /* 背景 */
 }
 
 body {
@@ -83,7 +83,7 @@ button {
 /* 主要按鈕 */
 button:first-child {
     background: var(--primary);
-    color: #4A707A;
+    color: #1D1D1C;
 }
 
 button:first-child:active { background: var(--primary-dark); }
