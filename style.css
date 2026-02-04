@@ -62,6 +62,20 @@ h1 { color: #5D8A97; letter-spacing: 2px; }
     -webkit-tap-highlight-color: transparent;
     box-shadow: 0 4px 6px rgba(0,0,0,0.02);
     border: 1px solid rgba(0,0,0,0.05);
+    /* 核心：徹底禁用所有長按選取行為 */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    
+    /* 針對 iOS Safari 禁用系統選單 */
+    -webkit-touch-callout: none;
+    
+    /* 防止點擊時出現藍色框框 */
+    -webkit-tap-highlight-color: transparent;
+    
+    /* 告訴瀏覽器不要隨便處理這個格子的觸控 */
+    touch-action: manipulation;
 }
 
 /* 點擊標記後的顏色 */
